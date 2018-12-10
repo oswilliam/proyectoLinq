@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-sm-offset-2 jumbotron" style="margin-top:25px;">
+            <center>
+                <form action="/" method="post">
+                    <div class="form-group">
+                        @* Elemento select *@
+                        <select name="select" class="form-control">
+                            <option value="value1">Materia</option>
+                            <option value="value2">Carnet</option>
+                            <option value="value3">Nombre</option>
+                            <option value="value4">Promedio</option>
+                            <option value="value4">Estado</option>
+                        </select>
+                               @* Fin select *@
+                        @* Caja de texto para buscar *@
+                        <input type="text" name="txtbuscar" class="form-control" placeholder="Digite una materia" autocomplete="off" />
+                    
+                        <input type="submit" class="btn btn-success btn-lg" name="btn" value="BUSCAR" />
+                     </div>
+                </form>
+            </center>
+        </div>
+        <div class="col-lg-8 col-sm-offset-2 jumbotron" style="margin-top:5px;">
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="background-color:gray">
+                        <th><center>Carnet</center></th>
+                        <th><center>Nombre</center></th>
+                        <th><center>Materia</center></th>
+                        <th><center>Promedio</center></th>
+                        <th><center>Fecha</center></th>
+                        <th><center>Estado</center></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td><center>@item.Carnet</center></td>
+                            <td><center>@item.Nombre</center></td>
+                            <td><center>@item.Materia</center></td>
+                            <td><center>@item.Promedio</center></td>
+                            <td><center>@item.FechaRegistro</center></td>
+                            @{
+                                if (item.Promedio >= 6)
+                                {
+                                    <td class="text-success"><center>Aprobado</center></td>
+                                }
+                                else
+                                {
+                                    <td class="text-danger"><center>Reprobado</center></td>
+                                }
+                            }
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
